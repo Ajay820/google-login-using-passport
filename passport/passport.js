@@ -30,9 +30,9 @@ passport.serializeUser(function(user, cb) {
   });
 
 passport.use(new GoogleStrategy({
-    clientID: "969483647188-hhir5kvkqg8irlu74m1ieu2h4s9mddr6.apps.googleusercontent.com",
-    clientSecret: "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",
-    callbackURL: "http://localhost:4000/auth/google/callback"
+    clientID: //"969483647188-hhir5kvkqg8irlu74m1ieu2h4s9mddr6.apps.googleusercontent.com",
+    clientSecret: //"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",
+    callbackURL: //"http://localhost:4000/auth/google/callback"
   },
   (accessToken,refreshToken,profile,next)=>{
     console.log("my profile",profile._json.email);
