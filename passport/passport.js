@@ -5,34 +5,34 @@ const User = require("../model/user.js")
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
-// passport.serializeUser(function(user, done) {
-//     done(null, user.id); 
-//    // where is this user.id going? Are we supposed to access this anywhere?
-// });
+passport.serializeUser(function(user, done) {
+    done(null, user.id); 
+   // where is this user.id going? Are we supposed to access this anywhere?
+});
 
-// // used to deserialize the user
-// passport.deserializeUser(function(id, done) {
-//     User.findById(id, function(err, user) {
-//         done(err, user);
+// used to deserialize the user
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
+
+// passport.serializeUser(function(user, cb) {
+//     process.nextTick(function() {
+//       cb(null, { id: user.id, username: user.username });
 //     });
-// });
-
-passport.serializeUser(function(user, cb) {
-    process.nextTick(function() {
-      cb(null, { id: user.id, username: user.username });
-    });
-  });
+//   });
   
-  passport.deserializeUser(function(user, cb) {
-    process.nextTick(function() {
-      return cb(null, user);
-    });
-  });
+//   passport.deserializeUser(function(user, cb) {
+//     process.nextTick(function() {
+//       return cb(null, user);
+//     });
+//   });
 
 passport.use(new GoogleStrategy({
-    clientID: ,
-    clientSecret:,
-    callbackURL: 
+    clientID: "918096073239-93paku6d5nn4blmusu8v66grl16t5891.apps.googleusercontent.com",
+    clientSecret: "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",
+    callbackURL: "http://localhost:4000/auth/google/callback"
   },
   (accessToken,refreshToken,profile,next)=>{
     console.log("my profile",profile._json.email);
@@ -58,6 +58,6 @@ passport.use(new GoogleStrategy({
     })
 
 
-    next()
+    // next()
   }
 ));
